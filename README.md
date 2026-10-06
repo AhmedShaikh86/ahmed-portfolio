@@ -1,65 +1,58 @@
-# Muhammad Ahmed Shaikh — Portfolio
+# Ahmed Shaikh — Portfolio
 
-Plain HTML + CSS + JavaScript. Koi build step nahi, koi `npm install` nahi.
-`index.html` ko browser mein kholein aur site chal jayegi.
+Personal portfolio built with **React 19 + Vite + Framer Motion + Lenis** (smooth scroll).
+Black & orange theme, fully responsive, with scroll-driven animations.
+
+## Chalane ka tareeqa
+
+```bash
+npm install      # pehli dafa
+npm run dev      # http://localhost:5173 par khulegi, save karte hi refresh
+npm run build    # production build (dist/ folder)
+```
 
 ## Folder structure
 
 ```
 portfolio/
-├── index.html            ← page ka dhancha (structure)
-├── css/style.css         ← design + 4 themes
-├── js/data.js            ← ✏️ SAARA CONTENT YAHAN HAI (sirf isay edit karein)
-├── js/main.js            ← data.js se page banata hai (edit ki zaroorat nahi)
-└── assets/
-    ├── profile.webp      ← aapki photo
-    ├── Ahmed_Shaikh_Resume.pdf   ← apni CV is naam se yahan rakhein
-    └── projects/         ← project thumbnails
+├── public/
+│   ├── profile.webp              ← aapki photo
+│   ├── Ahmed_Shaikh_Resume.pdf   ← apni CV is naam se yahan rakhein (button khud aa jayega)
+│   └── projects/                 ← project thumbnails
+├── src/
+│   ├── data.js        ← ✏️ SAARA CONTENT YAHAN HAI (sirf isay edit karein)
+│   ├── styles.css     ← design; rang sab se upar :root mein
+│   ├── App.jsx        ← sections ki tarteeb
+│   └── components/    ← Hero, About, Projects, Skills, Contact...
+└── index.html
 ```
 
 ## Naya project add karna
 
-1. `js/data.js` kholein aur `projects: [` array dhoondein.
-2. Kisi bhi project ka `{ ... },` block copy karke list mein paste karein aur values badlein:
+1. Website ka screenshot (1440×900 best) `public/projects/` mein rakhein, e.g. `my-site.webp`.
+2. `src/data.js` mein `projects` array ke andar ek block copy-paste karke badlein:
 
 ```js
 {
-  title: "My New Website",
-  category: "Frontend",            // naya category likhenge to filter button khud ban jayega
-  featured: true,                  // true = bara card with thumbnail
-  image: "assets/projects/my-new-website.webp",
-  description: "Short description of what it does.",
-  tags: ["React.js", "Tailwind CSS"],
-  live: "https://my-new-website.vercel.app/",
-  code: "https://github.com/AhmedShaikh86/my-new-website",
+  title: "My Site",
+  subtitle: "Short Tagline",
+  category: "Full Stack",
+  featured: true,                    // true = bara slide, false = chhota card
+  image: "/projects/my-site.webp",   // khali "" chhorein to live screenshot khud load hoga
+  description: "What it does in 1–2 lines.",
+  tags: ["React.js", "Node.js"],
+  live: "https://my-site.vercel.app/",
+  code: "https://github.com/AhmedShaikh86/my-site",
   year: "2026",
 },
 ```
 
-3. **Thumbnail:** live site ka screenshot le kar (1440×900 best hai) `assets/projects/` mein rakhein
-   aur `image` mein uska path likhein.
-   - Agar `image: ""` khali chhor dein to site **khud live link ka screenshot** online load kar legi
-     (microlink.io se). Ye kaam karta hai, lekin apni image rakhna zyada fast aur reliable hai.
+3. `git add . && git commit -m "Add my-site" && git push` — Vercel khud update kar dega.
 
-Stats (`10+ Projects built` etc.), skills, experience, education — sab kuch isi file mein hai.
+## Rang badalna
 
-## Theme
-
-4 themes built-in hain — navbar mein 🎨 button se switch hoti hain:
-
-| Theme | Style |
-|---|---|
-| `wine` (default) | Dark + wine/burgundy + champagne gold — aapke suit se match |
-| `midnight` | Dark + indigo/cyan — classic developer look |
-| `emerald` | Dark + green/lime — techy |
-| `ivory` | Light + wine — clean, professional |
-
-Default theme badalni ho to `js/data.js` mein `defaultTheme: "wine"` badal dein.
+`src/styles.css` ke shuru mein `--orange` aur `--bg` badal dein — poori site ka rang badal jayega.
 
 ## Vercel par deploy
 
-1. Is folder ko GitHub repo mein push karein (e.g. `My-Porfolio-Website`).
-2. vercel.com → **Add New Project** → repo select → Framework: **Other** → Deploy.
-   Build command ki zaroorat nahi.
-
-Har baar naya project add karke `git push` karein, Vercel khud update kar dega.
+vercel.com → **Add New Project** → is repo ko select karein → Framework **Vite** khud detect hoga → **Deploy**.
